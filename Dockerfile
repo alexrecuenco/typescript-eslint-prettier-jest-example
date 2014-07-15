@@ -25,9 +25,10 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 
 
 # Copy the rest of the source files into the image.
-COPY --link . .
+COPY --link package*.json tsconfig*.json .
+COPY --link packages packages
 
-RUN npm run build --ws
+RUN ls && npm run build --ws
 
 FROM node:${NODE_VERSION}-alpine AS production-base
 
