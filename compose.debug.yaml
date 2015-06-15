@@ -1,0 +1,7 @@
+# TODO: Make this auto-reloadable and expose debug ports to the outside world
+services:
+  frontend: {}
+  backend: {}
+  db:
+    ports:
+      - 5432:5432
