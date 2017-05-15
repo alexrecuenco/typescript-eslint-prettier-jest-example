@@ -3,5 +3,7 @@ services:
   frontend: {}
   backend: {}
   db:
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
       - 5432:5432
