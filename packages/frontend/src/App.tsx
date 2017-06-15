@@ -1,4 +1,4 @@
-import { examples } from 'interface';
+import { exampleTasks } from 'interface';
 import { useState } from 'react';
 import './App.css';
 import reactLogo from './assets/react.svg';
@@ -7,7 +7,7 @@ import viteLogo from '/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [items] = useState(examples);
+  const [items] = useState(exampleTasks);
 
   return (
     <>

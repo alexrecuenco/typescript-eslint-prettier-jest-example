@@ -9,13 +9,17 @@ if (process.env.liveUrl) {
 
 let app: Server;
 
-beforeAll(() => {
-  app = serverFactory();
-});
+describe('Health', () => {
+  beforeAll(() => {
+    app = serverFactory({} as any);
+  });
 
-describe('Server responds', () => {
   // eslint-disable-next-line jest/expect-expect
   test('Responds 200', async () => {
     await request(app).get('/health').expect(200);
+  });
+  // eslint-disable-next-line jest/expect-expect
+  test('Responds 200 on v1', async () => {
+    await request(app).get('/v1/health').expect(200);
   });
 });

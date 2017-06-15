@@ -1,7 +1,7 @@
-import type { Item } from 'interface';
+import type { Task } from 'interface';
 
 interface Props {
-  items: Item[];
+  items: Task[];
 }
 export default function ItemList({ items }: Props) {
   const listItems = items.map((item) => (
