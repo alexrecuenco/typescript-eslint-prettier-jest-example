@@ -5,14 +5,14 @@
     "main": "dist/src/index.js",
     "type": "module",
     "bin": {
-        "execsql": "./dist/src/scripts/execsql.js"
+        "myexecsql": "./dist/src/scripts/execsql.js"
     },
     "scripts": {
         "test": "jest",
-        "dev": "nodemon -- src/index.ts serve",
+        "dev": "nodemon src/index.ts serve",
+        "db:prepare": "npm run build && npm exec myexecsql ./db/prepare.sql",
         "start": "npm run build && node . serve",
         "build": "npm run build:prod",
-        "build:watch": "npx tsc --build ./tsconfig.prod.json && (concurrently \"npx tsc --build ./tsconfig.prod.json --watch\" && \"tsc-alias -p ./tsconfig.prod.json\")",
         "build:debug": "npm run build:debug:node && npm run build:debug:test",
         "build:debug:node": "tsc --build ./tsconfig.node.json && tsc-alias -p tsconfig.node.json",
         "build:debug:test": "tsc --build ./tsconfig.test.json",

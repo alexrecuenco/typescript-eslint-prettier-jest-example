@@ -21,6 +21,7 @@
     "module": "dist/src/index.js",
     "description": "Interface between frontend and backend",
     "scripts": {
+        "dev": "npm run build && concurrently -c  -n esm,cjs \"tsc --build tsconfig.esm.json --watch --preserveWatchOutput\" \"tsc --build tsconfig.cjs.json --watch --preserveWatchOutput\"",
         "test": "tsc --build ./tsconfig.test.json",
         "build": "npm run build:prod:esm && npm run build:prod:cjs",
         "build:prod:esm": "tsc --build tsconfig.esm.json",

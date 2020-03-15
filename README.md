@@ -1,6 +1,31 @@
 # Example
 
+In order do as follows
+
+## Build
+
+```bash
+npm run build -ws
+```
+
+## Test
+
+```bash
+npm run test -ws
+```
+
+## Prepare database
+
+```bash
+# at a separate terminal run this and keep running
+docker compose -f compose.yaml -f compose.debug.yaml up db
+# In a separate terminal
+npm run db:prepare -w backend
+```
+
 ## Launch
+
+### *production mode*
 
 ```bash
 docker compose up
@@ -8,9 +33,25 @@ docker compose up
 
 App will be accessible on port 8080
 
-### Launch development environment
+### Hot-reload mode
 
 In `vscode` use the task labeled `dev`.
+
+In the terminal you want to open two terminals, opening a database and the development environment
+
+```bash
+# Then keep this process running
+npm run dev
+```
+
+Clean resources
+
+```bash
+docker compose -f compose.yaml -f compose.debug.yaml down -v db
+npm run clean -ws --if-present
+```
+
+Access `http://localhost:3000/tasks/debug/populate` to populate a few tasks
 
 ### Launch in debug mode
 
