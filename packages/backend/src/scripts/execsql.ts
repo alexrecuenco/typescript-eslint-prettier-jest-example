@@ -10,8 +10,11 @@ export async function runSQLFile(filePath: string) {
   try {
     await client.connect();
     const sql = await readFile(filePath, { encoding: 'utf8' });
-    await client.query(sql);
-    console.log(`Executed SQL file: ${filePath}`);
+    console.log(`Executing SQL file: ${filePath}.\n${sql}`);
+    const result = await client.query(sql);
+    console.log(
+      `rowcount:${result.rowCount}\n${JSON.stringify(result.rows, null, 2)}`,
+    );
   } catch (err) {
     console.error(`Error executing SQL file ${filePath}:`, err);
   } finally {
