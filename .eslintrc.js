@@ -30,10 +30,12 @@ module.exports = {
   },
   rules: {
     'import/no-extraneous-dependencies': warn,
+
     // Temporal?
     'no-console': warn,
     'no-return-await': warn,
-    'no-unused-vars': warn,
+    'no-unused-vars': off,
+    '@typescript-eslint/no-unused-vars': off,
     eqeqeq: [error, 'smart'],
     'no-else-return': [
       error,
@@ -63,6 +65,9 @@ module.exports = {
     '@typescript-eslint/indent': off,
     '@typescript-eslint/explicit-member-accessibility': warn,
     '@typescript-eslint/no-explicit-any': off,
+    '@typescript-eslint/no-unsafe-return': off,
+    '@typescript-eslint/no-unsafe-assignment': off,
+    '@typescript-eslint/explicit-function-return-type': off,
     '@typescript-eslint/no-var-requires': off,
     '@typescript-eslint/no-empty-function': off,
     '@typescript-eslint/no-object-literal-type-assertion': off,
@@ -71,16 +76,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
-      rules: {
-        '@typescript-eslint/explicit-function-return-type': [
-          error,
-          {
-            allowExpressions: true,
-            allowTypedFunctionExpressions: true,
-            allowHigherOrderFunctions: true,
-          },
-        ],
-      },
+      rules: {},
     },
     {
       // TESTING CONFIGURATION
@@ -105,6 +101,7 @@ module.exports = {
       // "extends": ["plugin:jest/recommended"]
       plugins: ['jest'],
       rules: {
+        'no-restricted-imports': off,
         'jest/no-disabled-tests': warn,
         'jest/no-focused-tests': error,
         'jest/no-identical-title': error,
