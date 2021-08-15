@@ -1,9 +1,12 @@
 import { readFile } from 'fs/promises';
 
-const log = async (p: Promise<any>) => {
-  const o = await p;
-  console.log(o, typeof o);
-  return o;
+const log = async <T>(p: Promise<T>) => {
+  // eslint-disable-next-line @typescript-eslint/return-await
+  return p.then((o) => {
+    // eslint-disable-next-line no-console
+    console.log(o, typeof o);
+    return o;
+  });
 };
 function pgPassword(env: Record<string, string | undefined> = process.env) {
   const password = env.PGPASSWORD;

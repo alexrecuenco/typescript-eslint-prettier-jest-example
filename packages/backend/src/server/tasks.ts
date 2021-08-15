@@ -1,17 +1,46 @@
-import { json, Router } from 'express';
+import { ErrorRequestHandler, json, Router } from 'express';
 import { Task } from 'interface';
 import pg from 'pg';
 import { z } from 'zod';
 
 const TaskArray = z.array(Task);
 
+const jsonParseErrorHandler: ErrorRequestHandler = (
+  err: unknown,
+  req,
+  res,
+  next,
+) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(400).json({ message: err instanceof Error ? err.message : err });
+};
+
+const zodErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  if (err instanceof z.ZodError) {
+    res.status(400).json({ message: err.errors });
+  } else {
+    next(err);
+  }
+};
+
+const unknownErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  res.status(500).json({ message: 'Internal Server Error' });
+  // TODO: Make this a winston logger
+  // eslint-disable-next-line no-console
+  console.error(err);
+  next();
+};
 export function taskRouter(client: pg.Pool, router = Router()) {
   router.use(json());
 
+  router.use(jsonParseErrorHandler);
+
   router.get('/', async (req, res) => {
     const response = await client.query(
-      'SELECT * FROM tasks LIMIT $1::integer',
-      [req.query.limit || 10],
+      'SELECT * FROM tasks ORDER BY id LIMIT $1::integer ',
+      [req.query.limit || 1000],
     );
 
     const rows = await TaskArray.parseAsync(response.rows);
@@ -63,13 +92,13 @@ export function taskRouter(client: pg.Pool, router = Router()) {
   });
 
   router.post('/', async (req, res) => {
-    const task = await Task.parseAsync(req.body);
+    const task = await Task.omit({ etag: true, id: true }).parseAsync(req.body);
     const result = await client.query(
-      'INSERT INTO tasks (name, etag) VALUES ($1::text, $2::text) RETURNING id',
-      [task.name, task.etag],
+      'INSERT INTO tasks (name) VALUES ($1::text) RETURNING *',
+      [task.name],
     );
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-    const response = { ...req.body, id: result.rows[0].id };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const response = { ...req.body, ...result.rows[0] };
     res.status(201).send(await Task.parseAsync(response));
   });
 
@@ -94,5 +123,8 @@ export function taskRouter(client: pg.Pool, router = Router()) {
 
     res.status(200).json({ message: 'Populated', count });
   });
+
+  router.use(zodErrorHandler);
+  router.use(unknownErrorHandler);
   return router;
 }

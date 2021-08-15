@@ -5,15 +5,27 @@
   text-align: center;
 }
 
+p,
+input {
+  justify-self: center;
+  font-size: large;
+}
+
+p.error {
+  color: #d91010;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +34,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +52,154 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.header {
+  display: flex;
+
+  padding-bottom: 60px;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.tasks {
+  .heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+    transition: gap 300ms;
+    button {
+      border: none;
+      padding: 0.5em 1em;
+      font-size: large;
+      font-weight: bolder;
+      cursor: pointer;
+      transition: transform 300ms;
+      box-shadow: 0 0.5em 0.5em #646cff;
+    }
+
+    button.add {
+      background-color: #646cff;
+      color: #ffffff;
+    }
+
+    input {
+      border: none;
+      padding: 0.5em 1em;
+      font-size: large;
+      font-weight: bolder;
+      background-color: whitesmoke;
+      color: #ffffff;
+      transition:
+        transform 300ms,
+        background-color 300ms;
+    }
+
+    &:hover {
+      gap: 2.5em;
+      button {
+        transform: scale(1.05);
+      }
+      button:hover {
+        transform: scale(1.25);
+      }
+      input {
+        transform: scale(1.1);
+        background-color: #4158d0;
+      }
+    }
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    padding: 2em;
+    gap: 2em;
+    .task {
+      display: flex;
+      padding: 1em;
+      height: 125px;
+      border-radius: 1.5em / 1em;
+      background: linear-gradient(
+        43deg,
+        #4158d0 0%,
+        #c850c0 30%,
+        #ffcc70 66%,
+        #ffffff 100%
+      );
+      font-weight: bolder;
+      font-size: large;
+      transition: transform 300ms;
+
+      .item {
+        input,
+        p {
+          margin: 0px;
+
+          padding: 1em;
+
+          height: 75%;
+          width: 75%;
+
+          background-color: transparent;
+          border: none;
+          border-radius: 16px;
+
+          color: black;
+          @media (prefers-color-scheme: light) {
+            color: whitesmoke;
+          }
+        }
+        input {
+          box-shadow: 0 0.1em 0.5em #ffffff;
+        }
+
+        p {
+          font-weight: 800;
+          display: table-cell;
+          vertical-align: middle;
+        }
+        justify-content: center;
+        align-items: center;
+
+        flex: 1;
+        padding: 1em;
+        display: flex;
+        transition: transform 300ms;
+      }
+
+      * {
+        /* debug */
+        /* border: 4px solid #4158d0; */
+      }
+
+      button.delete {
+        position: absolute;
+        min-width: 30px;
+        max-width: 30px;
+        width: 100%;
+        height: 30px;
+        max-height: 40px;
+        background-color: #d91010d7;
+        color: #ffffff;
+        padding: 0;
+        margin: 0;
+        z-index: 10;
+        transition: transform 300ms;
+      }
+
+      &:hover,
+      :hover {
+        transform: scale(1.1);
+        button:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
 }

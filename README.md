@@ -2,36 +2,46 @@
 
 In order do as follows
 
-## Build
+## Setup
+
+### Docker
+
+1. Copy `dbpass.txt.example` to `dbpass.txt` and set a password
+2. Copy `password-file.txt.example` to `password-file.txt` and set the same password
+
+
+### Local
+
+1. Install **node 22**
+2. Run `npm install`
+
+
+## Local Development
+
+### Build
+
+Only required for local development
 
 ```bash
 npm run build -ws
 ```
 
-## Test
+### Test
 
 ```bash
 npm run test -ws
 ```
 
-## Prepare database
+### Prepare database
 
 ```bash
 # at a separate terminal run this and keep running
 docker compose -f compose.yaml -f compose.debug.yaml up db
-# In a separate terminal
+# In a separate terminal, (I believe postgresql does this automatically)
 npm run db:prepare -w backend
 ```
 
-## Launch
-
-### *production mode*
-
-```bash
-docker compose up
-```
-
-App will be accessible on port 8080
+### Launch
 
 ### Hot-reload mode
 
@@ -51,7 +61,15 @@ docker compose -f compose.yaml -f compose.debug.yaml down -v db
 npm run clean -ws --if-present
 ```
 
-Access `http://localhost:3000/tasks/debug/populate` to populate a few tasks
+Access `http://localhost:3000/tasks/debug/populate` to populate a few tasks (or click the populate button)
+
+## Docker *deployment*
+
+```bash
+docker compose up
+```
+
+App will be accessible on port 8080
 
 ### Launch in debug mode
 
