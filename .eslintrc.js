@@ -65,6 +65,7 @@ module.exports = {
     '@typescript-eslint/indent': off,
     '@typescript-eslint/explicit-member-accessibility': warn,
     '@typescript-eslint/no-explicit-any': off,
+    '@typescript-eslint/no-unsafe-argument': off,
     '@typescript-eslint/no-unsafe-return': off,
     '@typescript-eslint/no-unsafe-assignment': off,
     '@typescript-eslint/explicit-function-return-type': off,
