@@ -48,7 +48,7 @@ describe('Ignoring values', () => {
   test('should leave json objects alone', () => {
     const throwOnReplace = replace(f, (t): t is any => false);
     fc.assert(
-      fc.property(fc.jsonObject(), (json) => {
+      fc.property(fc.json(), (json) => {
         expect(() => expect(throwOnReplace(json)).toStrictEqual(json)).not.toThrow();
       }),
     );
