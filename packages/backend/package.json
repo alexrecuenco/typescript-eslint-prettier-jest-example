@@ -25,8 +25,10 @@
     "dependencies": {
         "dotenv": "^16.4.5",
         "express": "^5.0.1",
+        "express-winston": "^4.2.0",
         "interface": "^1.0.0",
         "pg": "^8.13.0",
+        "winston": "^3.15.0",
         "zod": "^3.23.8"
     },
     "devDependencies": {

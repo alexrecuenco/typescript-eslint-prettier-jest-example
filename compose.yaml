@@ -32,8 +32,6 @@ services:
       PGUSER: postgres
       PGPORT: 5432
       PGDATABASE: taskdb
-    ports:
-      - 3000:3000
     depends_on:
       db:
         condition: service_healthy
@@ -41,13 +39,16 @@ services:
       - db-password
     healthcheck:
       test:
-        # node
-        [
-          'CMD',
-          'wget --no-verbose --server-response --tries=1
-          --spider  http://localhost:3000/v1/health',
-        ]
+          - CMD
+          - /usr/bin/wget
+          - --no-verbose
+          - --server-response
+          - --tries=1
+          - --spider
+          - http://localhost:3000/health
       interval: 5s
+      start_interval: 1s
+      start_period: 1s
       timeout: 1s
       retries: 3
   db:
@@ -62,14 +63,15 @@ services:
     environment:
       POSTGRES_DB: taskdb
       POSTGRES_PASSWORD_FILE: /run/secrets/db-password
+      POSTGRES_HOST_AUTH_METHOD: $POSTGRES_HOST_AUTH_METHOD
     expose:
       - 5432
-    ports:
-      - 5432:5432
 
     healthcheck:
       test: ['CMD', 'pg_isready']
       interval: 5s
+      start_interval: 1s
+      start_period: 1s
       timeout: 1s
       retries: 3
 

@@ -32,6 +32,7 @@ const configFiles = ['.', ...packageFolders].flatMap((p) =>
 );
 
 const off = 'off';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const warn = 'warn';
 const error = 'error';
 

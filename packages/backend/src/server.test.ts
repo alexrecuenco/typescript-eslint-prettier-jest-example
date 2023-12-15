@@ -20,6 +20,6 @@ describe('Health', () => {
   });
   // eslint-disable-next-line jest/expect-expect
   test('Responds 200 on v1', async () => {
-    await request(app).get('/v1/health').expect(200);
+    await request(app).get('/api/v1/health').expect(200);
   });
 });

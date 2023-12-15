@@ -9,12 +9,12 @@ In order do as follows
 1. Copy `dbpass.txt.example` to `dbpass.txt` and set a password
 2. Copy `password-file.txt.example` to `password-file.txt` and set the same password
 
+Alternatively, set `POSTGRES_HOST_AUTH_METHOD=trust` and pass it to docker compose (No authentication, this is done on debug mode)
 
 ### Local
 
 1. Install **node 22**
 2. Run `npm install`
-
 
 ## Local Development
 
@@ -32,13 +32,13 @@ npm run build -ws
 npm run test -ws
 ```
 
-### Prepare database
+### Prepare database for local development
 
 ```bash
 # at a separate terminal run this and keep running
 docker compose -f compose.yaml -f compose.debug.yaml up db
 # In a separate terminal, (I believe postgresql does this automatically)
-npm run db:prepare -w backend
+# npm run db:prepare -w backend
 ```
 
 ### Launch

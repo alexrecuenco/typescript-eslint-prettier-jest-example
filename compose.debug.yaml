@@ -1,7 +1,10 @@
 # TODO: Make this auto-reloadable and expose debug ports to the outside world
 services:
   frontend: {}
-  backend: {}
+  backend:
+    ports:
+      # Avoid conflicts with local development
+      - 3003:3000
   db:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust

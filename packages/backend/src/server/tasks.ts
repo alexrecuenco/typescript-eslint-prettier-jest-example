@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import { ErrorRequestHandler, json, Router } from 'express';
 import { Task } from 'interface';
 import pg from 'pg';
@@ -14,19 +15,32 @@ const jsonParseErrorHandler: ErrorRequestHandler = (
   if (res.headersSent) {
     return next(err);
   }
-  res.status(400).json({ message: err instanceof Error ? err.message : err });
+  res.status(400).json({
+    message: 'Invalid Input',
+    error: formatError(err),
+  });
+};
+
+const formatError = (err: unknown) => {
+  if (err instanceof Error) {
+    return `[${err.name}] ${err.message}`;
+  }
+  return JSON.stringify(err);
 };
 
 const zodErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   if (err instanceof z.ZodError) {
-    res.status(400).json({ message: err.errors });
+    res.status(400).json({ message: 'Invalid Input', error: err.errors });
   } else {
     next(err);
   }
 };
 
 const unknownErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  res.status(500).json({ message: 'Internal Server Error' });
+  res.status(500).json({
+    message: 'Internal Server Error',
+    error: formatError(err),
+  });
   // TODO: Make this a winston logger
   // eslint-disable-next-line no-console
   console.error(err);
@@ -108,12 +122,13 @@ export function taskRouter(client: pg.Pool, router = Router()) {
     if (typeof n === 'string') {
       amount = parseInt(n, 10);
     }
+    const [part1, part2] = randomUUID().split('-');
 
     const promises = Array(amount)
       .fill(0)
       .map((_, i) => {
         return client.query('INSERT INTO tasks (name) VALUES ($1::text)', [
-          `Task ${i}`,
+          `Task ${i} — ${part1}, ${part2}`,
         ]);
       });
 
