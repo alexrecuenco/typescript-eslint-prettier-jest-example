@@ -2,17 +2,14 @@
     "name": "typescript-eslint-prettier-jest-example",
     "version": "0.1.0",
     "description": "Example of Combining eslint prettier jest.",
-    "main": "./build/bin/cli.js",
-    "types": "./build/src/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/alexrecuenco/typescript-eslint-prettier-jest-example.git"
     },
     "engines": {
         "npm": ">=9.0.0",
-        "node": ">=16.0.0 <21.0.0"
+        "node": ">=18.0.0 <21.0.0"
     },
-    "bin": "./build/bin/cli.js",
     "scripts": {
         "start": "npm run build && node .",
         "build": "npm run build:debug",
@@ -32,6 +29,8 @@
         "internationalization"
     ],
     "devDependencies": {
+        "@stylistic/eslint-plugin": "^1.6.3",
+        "@stylistic/eslint-plugin-ts": "^1.6.3",
         "@types/jest": "^29.5.3",
         "@types/node": "^20.11.25",
         "@typescript-eslint/eslint-plugin": "^7.1.1",
@@ -40,13 +39,10 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.28.0",
         "eslint-plugin-jest": "^27.2.3",
-        "eslint-plugin-prettier": "^5.0.0",
         "fast-check": "^3.12.0",
         "jest": "^29.6.2",
-        "prettier": "^3.0.0",
         "ts-jest": "^29.1.1",
         "tsc-watch": "^6.0.4",
-        "typescript": "^5.4.2",
-        "typescript-eslint": "^7.1.1"
+        "typescript": "^5.3.2"
     }
 }

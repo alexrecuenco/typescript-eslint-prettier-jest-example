@@ -2,7 +2,11 @@ import type { JestConfigWithTsJest } from 'ts-jest';
 
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
-  testRegex: ['/tests/.*tests?.[jt]sx?', '/__tests__/.*tests?.[jt]sx?', '.*.(spec|test).[jt]sx?'],
+  testRegex: [
+    '/tests/.*tests?.[jt]sx?',
+    '/__tests__/.*tests?.[jt]sx?',
+    '.*.(spec|test).[jt]sx?',
+  ],
   // I dono't think we need to run the spec multiple times.. the functional test on tests/ maybe.
   // We can change this if we consider it useful to run the spec tests when the code is transpiled to javascript
   testPathIgnorePatterns: ['node_modules', 'build/'],

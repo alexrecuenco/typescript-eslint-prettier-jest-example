@@ -7,4 +7,6 @@ node_modules/
 coverage/
 !.eslintrc.js
 !.prettierrc.js
+!*.js
+!*.ts
 !.vscode/*.json

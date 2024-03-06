@@ -5,7 +5,7 @@
     ],
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "[javascript]": {
+    "[javascript,typescript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint"
     },
     "jest.jestCommandLine": "npm test -- ",
