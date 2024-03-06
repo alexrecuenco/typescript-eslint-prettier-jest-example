@@ -2,5 +2,14 @@
 {
     "extends": "./tsconfig.json",
     // WARN: If 'include' is changed on the main config, this file would overwrite it, so you should consider modifying this.
-    "include": ["src/**/*", "bin/**/*", "__tests__/**/*", ".*.js", "*.js"]
+    "include": [
+        "**/*.json",
+        "src/**/*",
+        "bin/**/*",
+        "__tests__/**/*",
+        ".*.js",
+        "*.js",
+        ".*.ts",
+        "*.ts"
+    ]
 }
