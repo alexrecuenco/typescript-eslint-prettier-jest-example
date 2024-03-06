@@ -23,19 +23,16 @@ module.exports = {
   plugins: ['@typescript-eslint/eslint-plugin'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    ecmaVersion: 2022,
+    sourceType: 'module',
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.eslint.json'],
   },
   rules: {
     'import/no-extraneous-dependencies': warn,
-
-    // Temporal?
-    'no-console': warn,
-    'no-return-await': warn,
+    'no-console': error,
     'no-unused-vars': off,
-    '@typescript-eslint/no-unused-vars': off,
+    '@typescript-eslint/no-unused-vars': error,
     eqeqeq: [error, 'smart'],
     'no-else-return': [
       error,
@@ -59,7 +56,6 @@ module.exports = {
       },
     ],
     camelcase: off,
-    '@typescript-eslint/camelcase': off,
     'require-await': off,
     '@typescript-eslint/require-await': off,
     '@typescript-eslint/indent': off,
@@ -71,7 +67,6 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': off,
     '@typescript-eslint/no-var-requires': off,
     '@typescript-eslint/no-empty-function': off,
-    '@typescript-eslint/no-object-literal-type-assertion': off,
     '@typescript-eslint/no-floating-promises': error,
   },
   overrides: [
@@ -90,7 +85,10 @@ module.exports = {
         'tests/**/*.ts',
         '__tests__/**/*.js',
         '__tests__/**/*.ts',
-        'jest.setup.js',
+        'jest.*.js',
+        'jest.*.ts',
+        '.*.ts',
+        '.*.js',
       ],
 
       // https://eslint.org/docs/user-guide/configuring#specifying-environments
@@ -99,15 +97,16 @@ module.exports = {
       },
 
       // Can't extend in overrides: https://github.com/eslint/eslint/issues/8813
-      // "extends": ["plugin:jest/recommended"]
+      extends: ['plugin:jest/recommended'],
       plugins: ['jest'],
       rules: {
         'no-restricted-imports': off,
-        'jest/no-disabled-tests': warn,
-        'jest/no-focused-tests': error,
-        'jest/no-identical-title': error,
-        'jest/prefer-to-have-length': warn,
-        'jest/valid-expect': error,
+        'jest/expect-expect': [
+          error,
+          {
+            assertFunctionNames: ['expect', 'fc.assert'],
+          },
+        ],
       },
     },
   ],

@@ -19,7 +19,3 @@ repos: #The order matters, we want prospector to run after all the sorting was d
       # File normalization
       - id: end-of-file-fixer
       - id: trailing-whitespace
-  - repo: https://github.com/prettier/prettier
-    rev: '6b22977cb56127cc10e04425b0eca7c5eb304e6e' # Use the sha or tag you want to point at
-    hooks:
-      - id: prettier

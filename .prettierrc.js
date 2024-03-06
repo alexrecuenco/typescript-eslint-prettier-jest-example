@@ -1,4 +1,5 @@
-/** @type {import("@types/prettier").Options} */
+//@ts-check
+/** @type {import("prettier").Options} */
 const options = {
   semi: true,
   trailingComma: 'all',

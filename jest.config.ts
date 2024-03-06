@@ -1,6 +1,6 @@
-//@ts-check
-/** @type {Partial<import("@jest/types").Config.InitialOptions>} */
-const config = {
+import type { JestConfigWithTsJest } from 'ts-jest';
+
+const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   testRegex: ['/tests/.*tests?.[jt]sx?', '/__tests__/.*tests?.[jt]sx?', '.*.(spec|test).[jt]sx?'],
   // I dono't think we need to run the spec multiple times.. the functional test on tests/ maybe.
@@ -11,7 +11,7 @@ const config = {
   verbose: true,
   // Important to use the AfterEnv to have the jest timeout and all the other settings inside that file to be correctly understood
   // See the difference between setupFiles and setupFilesAfterEnv to see the difference.
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setup.ts'],
 };
 
 module.exports = config;
