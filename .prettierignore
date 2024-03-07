@@ -1,3 +1,8 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+package-lock.json
 lib/
 build/
 build-*/
@@ -9,4 +14,3 @@ report/
 !*.js
 !*.ts
 !.vscode/*.json
-package-lock.json
