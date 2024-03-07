@@ -9,8 +9,8 @@ import fc from 'fast-check';
 const JestTimeoutMs = 60000;
 const FcTimeoutMs = Math.floor(0.8 * JestTimeoutMs);
 
-const verbose
-  = process.env.DEBUG === undefined
+const verbose =
+  process.env.DEBUG === undefined
     ? fc.VerbosityLevel.None
     : process.env.DEBUG !== '*'
       ? fc.VerbosityLevel.Verbose

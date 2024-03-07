@@ -7,12 +7,7 @@
         "declarationMap": false,
         "sourceMap": false,
         "rootDir": ".",
-        "types": [
-            "node"
-        ]
+        "types": ["node"],
     },
-    "include": [
-        "src/**/*",
-        "bin/**/*"
-    ],
+    "include": ["src/**/*", "bin/**/*"],
 }
