@@ -29,7 +29,7 @@ describe.each(EachSimpleType)(
             f,
             (t): t is any => !Array.isArray(t),
           )(arr);
-          const realResult = arr.map(v => f(v));
+          const realResult = arr.map((v) => f(v));
           expect(obtainedResult).toStrictEqual(realResult);
         }),
       );

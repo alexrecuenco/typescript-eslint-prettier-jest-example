@@ -7,23 +7,23 @@
             "type": "npm",
             "script": "build",
             "group": "build",
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "type": "npm",
             "script": "lint",
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "type": "npm",
             "script": "start",
-            "problemMatcher": []
+            "problemMatcher": [],
         },
         {
             "type": "typescript",
             "tsconfig": "tsconfig.json",
             "problemMatcher": ["$tsc"],
-            "group": "build"
+            "group": "build",
         },
         {
             "label": "tsc: watch",
@@ -31,7 +31,7 @@
             "tsconfig": "tsconfig.json",
             "option": "watch",
             "problemMatcher": ["$tsc-watch"],
-            "group": "build"
-        }
-    ]
+            "group": "build",
+        },
+    ],
 }

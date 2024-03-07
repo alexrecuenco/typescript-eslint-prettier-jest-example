@@ -15,9 +15,9 @@
             "ES2019",
             "ES2020",
             "ES2021",
-            "ES2022"
+            "ES2022",
         ],
-        "checkJs": true,                       /* Report errors in .js files. */
+        "checkJs": true /* Report errors in .js files. */,
         "declaration": true,
         /* Generates corresponding '.d.ts' file. */
         "declarationMap": true,
@@ -79,9 +79,9 @@
         // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
         /* Advanced Options */
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
         /* Disallow inconsistently-cased references to the same file. */
     },
     "include": ["src/**/*", "bin/**/*", "tests/**/*", "__tests__/**/*"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
 }

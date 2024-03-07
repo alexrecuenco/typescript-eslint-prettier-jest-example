@@ -1,22 +1,18 @@
 {
-    "eslint.validate": [
-        "typescript",
-        "typescriptreact"
-    ],
+    "eslint.validate": ["typescript", "typescriptreact"],
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-        "source.organizeImports": "never"
+        "source.organizeImports": "never",
     },
-    "[javascript,typescript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "never"
-        },
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "[javascript,typescript,jsonc,json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
     "eslint.experimental.useFlatConfig": true,
     "jest.jestCommandLine": "npm test -- ",
     "jest.runMode": {
-        "type": "on-demand"
-    }
+        "type": "on-demand",
+    },
 }

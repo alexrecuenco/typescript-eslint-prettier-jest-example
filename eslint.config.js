@@ -1,8 +1,6 @@
-const stylistic = require('@stylistic/eslint-plugin');
 const js = require('@eslint/js');
 const tseslint = require('typescript-eslint');
-
-const ts = require('@typescript-eslint/eslint-plugin');
+const eslintConfigPrettier = require('eslint-config-prettier');
 const tsParser = require('@typescript-eslint/parser');
 // When it works again do `npm install --save-dev eslint-plugin-import`
 // const imprt = require('eslint-plugin-import');
@@ -10,16 +8,16 @@ const tsParser = require('@typescript-eslint/parser');
 // https://github.com/import-js/eslint-plugin-import/pull/2829
 const globals = require('globals');
 const jest = require('eslint-plugin-jest');
+
 const off = 'off';
-
 const warn = 'warn';
-
 const error = 'error';
 
 // const TEST_ONLY_IMPORTS = ['fast-check', 'jest'];
 
 /**
- * set of typescript-eslint any rules
+ * Set of typescript-eslint any rules
+ *
  * @param {'error' | 'warn' | 'off'} level
  * @returns
  */
@@ -37,7 +35,9 @@ const any_rules = (level) => {
 
 module.exports = [
   js.configs.recommended,
+  tseslint.configs.eslintRecommended,
   ...tseslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {
       globals: globals.node,
@@ -54,19 +54,6 @@ module.exports = [
       },
     },
   },
-  stylistic.configs['recommended-flat'],
-  stylistic.configs.customize({
-    // the following options are the default values
-    semi: true,
-  }),
-  {
-    languageOptions: { parser: tsParser },
-    plugins: {
-      // 'import': imprt,
-      '@stylistic': stylistic,
-      ts,
-    },
-  },
   {
     ignores: [
       '**/node_modules',
@@ -78,11 +65,10 @@ module.exports = [
       '**/report',
     ],
   },
+  // Disables all styling from eslint
+  eslintConfigPrettier,
   {
     rules: {
-      ...ts.configs['eslint-recommended'].rules,
-      ...ts.configs['recommended'].rules,
-      ...ts.configs['recommended-requiring-type-checking'].rules,
       // ...imprt.configs['errors'].rules,
       // ...imprt.configs['warnings'].rules,
       // ...imprt.configs['typescript'].rules,
@@ -91,7 +77,7 @@ module.exports = [
       '@typescript-eslint/return-await': ['error', 'always'],
       'no-unused-vars': off,
       '@typescript-eslint/no-unused-vars': error,
-      'eqeqeq': [error, 'smart'],
+      eqeqeq: [error, 'smart'],
       'no-else-return': [
         error,
         {
