@@ -16,7 +16,8 @@ const error = 'error';
 // const TEST_ONLY_IMPORTS = ['fast-check', 'jest'];
 
 /**
- * set of typescript-eslint any rules
+ * Set of typescript-eslint any rules
+ *
  * @param {'error' | 'warn' | 'off'} level
  * @returns
  */

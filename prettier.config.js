@@ -7,7 +7,7 @@ const options = {
   tabWidth: 2,
   proseWrap: 'always',
   quoteProps: 'as-needed',
-  // plugins: ['prettier-plugin-jsdoc'],
+  plugins: ['prettier-plugin-jsdoc'],
   overrides: [
     {
       files: '*.json',

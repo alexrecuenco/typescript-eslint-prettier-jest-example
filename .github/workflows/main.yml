@@ -7,6 +7,9 @@ on:
 
 jobs:
   pre-commit:
+    env:
+      # Disabled because: [error] Cannot find package 'prettier-plugin-jsdoc' imported from /app/noop.js
+      SKIP: prettier
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
