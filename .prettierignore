@@ -7,7 +7,7 @@ lib/
 build/
 build-*/
 dist/
-.vscode/
+.vscode/*
 node_modules/
 coverage/
 report/
