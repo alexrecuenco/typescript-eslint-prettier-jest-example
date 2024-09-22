@@ -7,10 +7,12 @@
     },
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "[javascript,typescript,jsonc,json]": {
+        "editor.indentSize": "tabSize",
+        "editor.tabSize": 2,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
-    "eslint.experimental.useFlatConfig": true,
+    "eslint.useFlatConfig": true,
     "jest.jestCommandLine": "npm test -- ",
     "jest.runMode": {
         "type": "on-demand",

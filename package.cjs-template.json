@@ -1,0 +1,5 @@
+{
+    "//": "See fast-check for example of exporting both CJS and ESM. https://github.com/dubzzz/fast-check/blob/main/packages/vitest/package.json",
+    "type": "commonjs",
+    "sideEffects": false
+}

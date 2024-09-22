@@ -10,6 +10,7 @@
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
 *.BASE.*
+!tsconfig.base*
 *.LOCAL.*
 *.REMOTE.*
 *_BACKUP_*.txt
@@ -395,3 +396,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/git,node,linux,macos,python,pycharm,windows,visualstudiocode
+build*/
