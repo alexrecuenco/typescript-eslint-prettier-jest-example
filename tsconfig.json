@@ -17,6 +17,7 @@
             "ES2021",
             "ES2022",
         ],
+        "noImplicitOverride": true,
         "checkJs": true /* Report errors in .js files. */,
         "declaration": true,
         /* Generates corresponding '.d.ts' file. */

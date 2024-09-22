@@ -13,4 +13,8 @@ coverage/
 report/
 !*.js
 !*.ts
+!*.mjs
+!*.cjs
+!*.mts
+!*.cts
 !.vscode/*.json

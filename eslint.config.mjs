@@ -1,13 +1,13 @@
-const js = require('@eslint/js');
-const tseslint = require('typescript-eslint');
-const eslintConfigPrettier = require('eslint-config-prettier');
-const tsParser = require('@typescript-eslint/parser');
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import tsParser from '@typescript-eslint/parser';
 // When it works again do `npm install --save-dev eslint-plugin-import`
-// const imprt = require('eslint-plugin-import');
+// import imprt from 'eslint-plugin-import';
 // https://github.com/eslint/eslint/issues/18087
 // https://github.com/import-js/eslint-plugin-import/pull/2829
-const globals = require('globals');
-const jest = require('eslint-plugin-jest');
+import globals from 'globals';
+import jest from 'eslint-plugin-jest';
 
 const off = 'off';
 const warn = 'warn';
@@ -32,8 +32,33 @@ const any_rules = (level) => {
     '@typescript-eslint/no-explicit-any': level,
   };
 };
-
-module.exports = [
+/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} */
+export default [
+  {
+    ignores: [
+      'lib/',
+      'build/',
+      'build-*/',
+      'dist/',
+      '.vscode/',
+      'node_modules/',
+      'coverage/',
+      'report/',
+      '!*.js',
+      '!*.mjs',
+      '!*.cjs',
+      '!*.ts',
+      '!.vscode/*.json',
+      'package-lock.json',
+      '**/node_modules',
+      '**/dist',
+      '**/build',
+      '**/__snapshots__',
+      '**/mocks',
+      '**/coverage',
+      '**/report',
+    ],
+  },
   js.configs.recommended,
   tseslint.configs.eslintRecommended,
   ...tseslint.configs.recommended,
@@ -45,25 +70,14 @@ module.exports = [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: import.meta.dirname,
         project: [
           './tsconfig.eslint.json',
           './tsconfig.json',
-          '/tsconfig.prod.json',
+          './tsconfig.prod.json',
         ],
       },
     },
-  },
-  {
-    ignores: [
-      '**/node_modules',
-      '**/dist',
-      '**/build',
-      '**/__snapshots__',
-      '**/mocks',
-      '**/coverage',
-      '**/report',
-    ],
   },
   // Disables all styling from eslint
   eslintConfigPrettier,
@@ -119,7 +133,16 @@ module.exports = [
     },
   },
   {
-    files: ['.*.js', '.*.cjs', '*.config.cjs', '*.config.js', '*.config.ts'],
+    name: 'linting for configuration files',
+    files: [
+      '.*.js',
+      '.*.mjs',
+      '.*.cjs',
+      '*.config.mjs',
+      '*.config.cjs',
+      '*.config.js',
+      '*.config.ts',
+    ],
     rules: {
       'no-restricted-imports': off,
       // Consider if this is too leanient for tests
@@ -127,6 +150,7 @@ module.exports = [
     },
   },
   {
+    name: 'Rules for tests with jest',
     files: [
       '**/*.test.js',
       '**/*.spec.js',
