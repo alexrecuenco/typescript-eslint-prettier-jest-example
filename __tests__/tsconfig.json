@@ -1,0 +1,22 @@
+// Typescript config for tests
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        // "rootDir": "../",
+        "types": ["jest", "node"],
+        "composite": true,
+        "allowJs": true,
+        "sourceMap": true,
+    },
+    "exclude": ["./tsconfig.json"],
+    // "references": [{ "path": "../tsconfig.json" }],
+    "include": [
+        "./**/*",
+        "./**/*",
+        "./*",
+        "../src/**/*",
+        "../jest*.ts",
+        "../tsconfig.aliases.json",
+        "../package.json",
+    ],
+}
