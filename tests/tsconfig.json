@@ -6,6 +6,6 @@
         "allowJs": true,
         "sourceMap": true,
     },
-    "include": ["./**/*", "../src/**/*"],
+    "include": ["./**/*", "../src/**/*", "../jest.setup*"],
     "exclude": ["node_modules", "../*.config.*"],
 }

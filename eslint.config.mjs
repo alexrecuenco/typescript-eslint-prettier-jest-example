@@ -163,8 +163,14 @@ export default [
       'jest.*.js',
       'jest.*.ts',
     ],
+    ignores: ['jest.config.ts'],
     // https://eslint.org/docs/user-guide/configuring#specifying-environments
-    languageOptions: { globals: globals.jest },
+    languageOptions: {
+      globals: { ...globals.jest, ...globals.node },
+      parserOptions: {
+        project: ['./tests/tsconfig.json'],
+      },
+    },
     plugins: { jest },
     rules: {
       ...jest.configs['recommended'].rules,
