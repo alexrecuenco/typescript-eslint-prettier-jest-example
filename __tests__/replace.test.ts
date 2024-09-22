@@ -1,5 +1,5 @@
+import { replace } from '@/replacer.js';
 import fc, { Arbitrary } from 'fast-check';
-import { replace } from '../src/replacer.js';
 
 const EachSimpleType = [
   ['string', fc.string()],

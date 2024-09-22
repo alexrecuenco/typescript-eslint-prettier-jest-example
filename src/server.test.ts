@@ -1,6 +1,6 @@
-import { serverFactory } from '@/server.js';
 import type { Server } from 'http';
 import request from 'supertest';
+import { serverFactory } from './server.js';
 if (process.env.liveUrl) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore this enables connection to a live server and verify the app

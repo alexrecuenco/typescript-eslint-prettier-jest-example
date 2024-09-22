@@ -1,19 +1,9 @@
-// Typescript config for tests
+// Fake config to satisfy the vscode intellisense
 {
-    "extends": "../tsconfig.json",
+    "extends": "./tsconfig.test.json",
     "compilerOptions": {
-        "rootDir": "../",
-        "types": ["jest", "node"],
-        "composite": true,
-        "allowJs": true,
-        "sourceMap": true,
+        "composite": false,
     },
-    "references": [{ "path": "../src/" }],
-    "include": [
-        "./**/*",
-        "./*",
-        "../jest*.ts",
-        "../tsconfig.aliases.json",
-        "../package.json",
-    ],
+    "include": ["./**/*", "../src/**/*"],
+    "exclude": ["node_modules"],
 }
