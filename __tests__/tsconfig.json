@@ -2,19 +2,16 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-        // "rootDir": "../",
+        "rootDir": "../",
         "types": ["jest", "node"],
         "composite": true,
         "allowJs": true,
         "sourceMap": true,
     },
-    "exclude": ["./tsconfig.json"],
-    // "references": [{ "path": "../tsconfig.json" }],
+    "references": [{ "path": "../src/" }],
     "include": [
         "./**/*",
-        "./**/*",
         "./*",
-        "../src/**/*",
         "../jest*.ts",
         "../tsconfig.aliases.json",
         "../package.json",

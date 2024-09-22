@@ -86,10 +86,10 @@
         /* Disallow inconsistently-cased references to the same file. */
         "composite": true,
     },
-    "include": ["src/**/*", "bin/**/*"],
+    "include": ["bin/**/*"],
     "exclude": ["node_modules"],
 
-    "references": [{ "path": "./__tests__/tsconfig.json" }],
+    "references": [{ "path": "./__tests__/" }, { "path": "./src/" }],
     "ts-node": {
         // Runtime help for ts-node
         "require": ["tsconfig-paths/register"],
