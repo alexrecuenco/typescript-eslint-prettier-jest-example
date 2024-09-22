@@ -74,7 +74,7 @@ export default [
         project: [
           './tsconfig.eslint.json',
           './tsconfig.json',
-          './tsconfig.node.json',
+          './tsconfig.prod.json',
         ],
       },
     },

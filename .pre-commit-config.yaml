@@ -8,7 +8,7 @@ repos: #The order matters, we want prospector to run after all the sorting was d
       - id: check-json
         # JSON that are not json
         # (?x) means verbose (we can add spaces for better readibility, but they are ignored)
-        exclude: (?x) /?(tsconfig(\.\w+)? | \.vscode/.*) \.json$
+        exclude: (?x) ^(tsconfig(\.\w+)? | \.vscode/.*) \.json$
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-toml
@@ -19,10 +19,10 @@ repos: #The order matters, we want prospector to run after all the sorting was d
       # File normalization
       - id: end-of-file-fixer
       - id: trailing-whitespace
-  # - repo: https://github.com/pre-commit/mirrors-prettier
-  #   rev: 'v3.1.0'
-  #   hooks:
-  #     - id: prettier
-  #       additional_dependencies:
-  #         - prettier@3.2.5
-  #         - prettier-plugin-jsdoc@1.3.0
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: 'v3.1.0'
+    hooks:
+      - id: prettier
+        additional_dependencies:
+          - prettier@3.2.5
+          - prettier-plugin-jsdoc@1.3.0

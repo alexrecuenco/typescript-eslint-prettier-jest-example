@@ -17,7 +17,6 @@ const options = {
     },
     {
       files: ['tsconfig.*json', 'jsconfig.*json', '.vscode/*.json'],
-      excludeFiles: ['tsconfig.aliases.json'],
       options: {
         parser: 'jsonc',
       },
