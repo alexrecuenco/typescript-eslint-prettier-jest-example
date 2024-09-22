@@ -6,5 +6,9 @@
         "visualstudioexptteam.vscodeintellicode",
         "pmneo.tsimporter",
         "orta.vscode-jest",
+        "meganrogge.template-string-converter",
+        "simonsiefke.svg-preview",
+        "yoavbls.pretty-ts-errors",
+        "csstools.postcss",
     ],
 }
