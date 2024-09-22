@@ -34,6 +34,31 @@ const any_rules = (level) => {
 };
 /** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigArray} */
 export default [
+  {
+    ignores: [
+      'lib/',
+      'build/',
+      'build-*/',
+      'dist/',
+      '.vscode/',
+      'node_modules/',
+      'coverage/',
+      'report/',
+      '!*.js',
+      '!*.mjs',
+      '!*.cjs',
+      '!*.ts',
+      '!.vscode/*.json',
+      'package-lock.json',
+      '**/node_modules',
+      '**/dist',
+      '**/build',
+      '**/__snapshots__',
+      '**/mocks',
+      '**/coverage',
+      '**/report',
+    ],
+  },
   js.configs.recommended,
   tseslint.configs.eslintRecommended,
   ...tseslint.configs.recommended,
@@ -45,25 +70,14 @@ export default [
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: import.meta.dirname,
         project: [
           './tsconfig.eslint.json',
           './tsconfig.json',
-          '/tsconfig.prod.json',
+          './tsconfig.prod.json',
         ],
       },
     },
-  },
-  {
-    ignores: [
-      '**/node_modules',
-      '**/dist',
-      '**/build',
-      '**/__snapshots__',
-      '**/mocks',
-      '**/coverage',
-      '**/report',
-    ],
   },
   // Disables all styling from eslint
   eslintConfigPrettier,
@@ -119,7 +133,16 @@ export default [
     },
   },
   {
-    files: ['.*.js', '.*.cjs', '*.config.cjs', '*.config.js', '*.config.ts'],
+    name: 'linting for configuration files',
+    files: [
+      '.*.js',
+      '.*.mjs',
+      '.*.cjs',
+      '*.config.mjs',
+      '*.config.cjs',
+      '*.config.js',
+      '*.config.ts',
+    ],
     rules: {
       'no-restricted-imports': off,
       // Consider if this is too leanient for tests
@@ -127,6 +150,7 @@ export default [
     },
   },
   {
+    name: 'Rules for tests with jest',
     files: [
       '**/*.test.js',
       '**/*.spec.js',
