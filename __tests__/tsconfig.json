@@ -1,9 +1,0 @@
-// Fake config to satisfy the vscode intellisense
-{
-    "extends": "./tsconfig.test.json",
-    "compilerOptions": {
-        "composite": false,
-    },
-    "include": ["./**/*", "../src/**/*"],
-    "exclude": ["node_modules"],
-}

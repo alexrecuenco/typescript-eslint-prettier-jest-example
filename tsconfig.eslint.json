@@ -8,7 +8,7 @@
         "src/**/*",
         "bin/**/*",
         "jest*",
-        "__tests__/**/*",
+        "tests/**/*",
         "*.js",
         "*.mjs",
         "*.cjs",
@@ -17,5 +17,5 @@
         "*.mts",
         "*.cts",
     ],
-    "exclude": [],
+    "exclude": ["node_modules"],
 }

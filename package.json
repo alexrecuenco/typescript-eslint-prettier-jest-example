@@ -31,7 +31,8 @@
         "start": "npm run build && node . serve",
         "build:prod:esm": "tsc --build tsconfig.esm.json && tsc-alias -p tsconfig.esm.json",
         "build:prod:cjs": "tsc --build tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json && cp package.cjs-template.json dist/cjs/package.json",
-        "build:debug": "tsc --build ./__tests__/tsconfig.test.json && tsc --build ./src/tsconfig.test.json",
+        "build:debug": "tsc",
+        "build:debug:test": "tsc --build ./tests/tsconfig.json",
         "build:prod": "npm run build:prod:esm && npm run build:prod:cjs",
         "watch": "tsc-watch --onSuccess 'node .'",
         "lint": "eslint .",
@@ -42,7 +43,7 @@
         "check:esmloads": "node -e '(async () => { var o = await import(\"typescript-eslint-prettier-jest-example\"); })();'",
         "check:cjsloads": "node -e 'require(\"typescript-eslint-prettier-jest-example\");'",
         "check:loads": "npm run check:esmloads && npm run check:cjsloads",
-        "check:builds": "npm run build:prod && npm run build:debug",
+        "check:builds": "npm run build:prod && npm run build:debug && npm run build:debug:test",
         "check:lint": "npm run lint && npm run format",
         "check:all": "npm run check:lint && npm run check:builds && npm run check:loads",
         "deps:upgrade": "npm-check -u"

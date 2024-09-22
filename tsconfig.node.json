@@ -1,5 +1,5 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./dist",
         // For library (you send everything and let the consumer decide what to use,
@@ -17,4 +17,5 @@
         "types": ["node"],
     },
     "include": ["src/**/*", "bin/**/*"],
+    "exclude": ["tests/**", "node_modules", "**/*.spec.ts", "**/*.test.ts"],
 }

@@ -6,7 +6,6 @@ const server = serverFactory();
 export { serverFactory };
 
 if (process.argv[2] === 'serve') {
-  // eslint-disable-next-line no-console
   server.listen(PORT, () => {
     // eslint-disable-next-line no-console
     console.log(`Server running at http://localhost:${PORT}/`);

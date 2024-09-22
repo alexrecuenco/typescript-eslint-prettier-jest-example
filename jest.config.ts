@@ -15,7 +15,7 @@ const pathAliases = {
 
 // See here for more info https://kulshekhar.github.io/ts-jest/docs/getting-started/presets/#advanced
 const preset = createDefaultEsmPreset({
-  tsconfig: './__tests__/tsconfig.test.json',
+  tsconfig: './tests/tsconfig.json',
 });
 
 const config: JestConfigWithTsJest = {
@@ -26,11 +26,7 @@ const config: JestConfigWithTsJest = {
     useESM: true,
   }),
   modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/build/'],
-  testRegex: [
-    '/tests/.*tests?.[mc]?[jt]sx?$',
-    '/__tests__/.*tests?.[mc]?[jt]sx?$',
-    '.*.(spec|test).[mc]?[jt]sx?$',
-  ],
+  testRegex: ['/tests/.*tests?.[mc]?[jt]sx?$', '.*.(spec|test).[mc]?[jt]sx?$'],
   // I dono't think we need to run the spec multiple times.. the functional test on tests/ maybe.
   // We can change this back if we consider it useful to run the spec tests when the code is transpiled to javascript
   testPathIgnorePatterns: [
