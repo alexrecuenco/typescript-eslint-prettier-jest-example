@@ -1,7 +1,6 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import tsParser from '@typescript-eslint/parser';
 // When it works again do `npm install --save-dev eslint-plugin-import`
 // import imprt from 'eslint-plugin-import';
 // https://github.com/eslint/eslint/issues/18087
@@ -66,7 +65,7 @@ export default [
   {
     languageOptions: {
       globals: globals.node,
-      parser: tsParser,
+      parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
