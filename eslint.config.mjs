@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import tsParser from '@typescript-eslint/parser';
+import importPlugin from 'eslint-plugin-import';
 // When it works again do `npm install --save-dev eslint-plugin-import`
 // import imprt from 'eslint-plugin-import';
 // https://github.com/eslint/eslint/issues/18087
@@ -13,7 +13,7 @@ const off = 'off';
 const warn = 'warn';
 const error = 'error';
 
-// const TEST_ONLY_IMPORTS = ['fast-check', 'jest'];
+const TEST_ONLY_IMPORTS = ['fast-check', 'jest'];
 
 /**
  * Set of typescript-eslint any rules
@@ -61,17 +61,22 @@ export default [
   },
   js.configs.recommended,
   tseslint.configs.eslintRecommended,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.errors,
+  importPlugin.flatConfigs.warnings,
+  importPlugin.flatConfigs.typescript,
   ...tseslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {
       globals: globals.node,
-      parser: tsParser,
+      parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 2022,
         sourceType: 'module',
         tsconfigRootDir: import.meta.dirname,
         project: [
+          './tests/tsconfig.json',
           './tsconfig.eslint.json',
           './tsconfig.json',
           './tsconfig.node.json',
@@ -83,10 +88,7 @@ export default [
   eslintConfigPrettier,
   {
     rules: {
-      // ...imprt.configs['errors'].rules,
-      // ...imprt.configs['warnings'].rules,
-      // ...imprt.configs['typescript'].rules,
-      // "import/no-extraneous-dependencies": error,
+      'import/no-extraneous-dependencies': error,
       'no-console': error,
       '@typescript-eslint/return-await': ['error', 'always'],
       'no-unused-vars': off,
@@ -114,16 +116,18 @@ export default [
           },
         },
       ],
-      // 'no-restricted-imports': [
-      //   'error',
-      //   {
-      //     paths: TEST_ONLY_IMPORTS.map((name) => {
-      //       return { name,
-      //         message: `${name} is only available during testing` };
-      //     }),
-      //     patterns: TEST_ONLY_IMPORTS.map(dep => `${dep}/*`),
-      //   },
-      // ],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: TEST_ONLY_IMPORTS.map((name) => {
+            return {
+              name,
+              message: `${name} is only available during testing`,
+            };
+          }),
+          patterns: TEST_ONLY_IMPORTS.map((dep) => `${dep}/*`),
+        },
+      ],
       '@typescript-eslint/explicit-member-accessibility': warn,
       '@typescript-eslint/no-explicit-any': warn,
       '@typescript-eslint/explicit-function-return-type': off,
@@ -174,7 +178,7 @@ export default [
     plugins: { jest },
     rules: {
       ...jest.configs['recommended'].rules,
-      // 'no-restricted-imports': off,
+      'no-restricted-imports': off,
       'jest/expect-expect': [
         error,
         {
