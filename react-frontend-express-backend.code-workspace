@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    },
+    {
+      "name": "interface",
+      "path": "packages/interface",
+    },
+    {
+      "name": "backend",
+      "path": "packages/backend",
+    },
+    {
+      "name": "frontend",
+      "path": "packages/frontend",
+    },
+  ],
+  "settings": {
+    "vite.autoStart": false,
+    "jest.enable": true,
+    "jest.disabledWorkspaceFolders": [
+      "react-frontend-express-backend",
+      "interface",
+      "frontend",
+    ],
+  },
+}

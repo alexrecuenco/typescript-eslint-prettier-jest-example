@@ -13,7 +13,15 @@ const pathAliases = {
   [packageJson.name]: ['src'],
 };
 
-// See here for more info https://kulshekhar.github.io/ts-jest/docs/getting-started/presets/#advanced
+/**
+ * To get this to work for importing external ESM modules (i.e., interface being
+ * solely ESM, ) You currently need to run NODE_OPTIONS="$NODE_OPTIONS
+ * --experimental-vm-modules" npm test See
+ * https://jestjs.io/docs/ecmascript-modules Tracking jest issue
+ * https://github.com/jestjs/jest/issues/9430 See here for more presets
+ * https://kulshekhar.github.io/ts-jest/docs/getting-started/presets/#advanced
+ */
+
 const preset = createDefaultEsmPreset({
   tsconfig: './tsconfig.test.json',
 });

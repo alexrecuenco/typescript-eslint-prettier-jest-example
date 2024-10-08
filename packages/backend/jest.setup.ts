@@ -3,6 +3,7 @@
  * https://github.com/dubzzz/fast-check/blob/1ceb2b982b754b99aef8d763723206605b67451e/example/jest.setup.js
  */
 
+import { jest } from '@jest/globals';
 import fc from 'fast-check';
 
 // Default timeout of 60s

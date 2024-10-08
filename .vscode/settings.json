@@ -23,7 +23,6 @@
         "editor.tabSize": 4,
     },
     "eslint.useFlatConfig": true,
-    "jest.enable": true,
-    "jest.rootPath": "packages/",
+    "jest.enable": false,
     "vite.autoStart": false,
 }
