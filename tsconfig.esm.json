@@ -1,8 +1,0 @@
-// This file currently just significes ESM support.
-// So that if tsconfig.node changes to not be directly ESM, this one can still be used and build scripts dont change
-{
-    "extends": "./tsconfig.node.json",
-    "compilerOptions": {
-        // "outDir": "./dist",
-    },
-}

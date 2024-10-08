@@ -1,16 +1,10 @@
 # Example
 
-Example of typescript, eslint, and jest with property based testing.
+## Using workspaces
 
-Possibly, you might want to delete the `.pre-commit-config.yaml` file if you are
-not using python anywhere.
-
-This is only tested with certain versions of node and npm, it might work with
-others, disable the `engine-strict=true` in the `.npmrc` file at your
-discretion.
-
-## Check upgrades
+Most commands can be launched for each workspace by using `--workspaces|-ws`
 
 ```bash
-npx npm-check -u
+npm i -ws
+npm install --workspaces
 ```

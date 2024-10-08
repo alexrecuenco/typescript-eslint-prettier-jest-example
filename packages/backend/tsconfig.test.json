@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./build-test",
+        "types": ["node", "jest"],
+    },
+    // You have to add also the src folder, otherwise auto-imports on test files would not work, even though jest is happy with it
+    "include": ["tests", "src/**/*", "jest.*"],
+    "exclude": ["jest.config*"],
+}

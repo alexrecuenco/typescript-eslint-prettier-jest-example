@@ -1,21 +1,17 @@
 {
     "extends": "./tsconfig.json",
+    "references": [{ "path": "../interface" }],
     "compilerOptions": {
-        "outDir": "./dist",
+        "outDir": "./build-debug",
         // For library (you send everything and let the consumer decide what to use,
         // usually their compiler will prune the extra information)
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
-        // For application,
-        // WARN: if you enable the section below, make sure to modify the package.json to REMOVE the types from there
-        // "declaration": false,
-        // "declarationMap": false,
-        // "sourceMap": false,
         /* Generates corresponding '.d.ts' file. */
         "rootDir": ".",
         "types": ["node"],
     },
     "include": ["src/**/*", "bin/**/*"],
-    "exclude": ["tests/**", "node_modules", "**/*.spec.ts", "**/*.test.ts"],
+    "exclude": ["**/*.spec.ts", "**/*.test.ts"],
 }

@@ -4,34 +4,56 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "npm",
-            "script": "build",
-            "group": "build",
-            "problemMatcher": [],
+            "label": "dev",
+            "isBackground": true,
+            "dependsOn": [
+                "npm: dev - packages/frontend",
+                "npm: dev - packages/backend",
+            ],
         },
         {
             "type": "npm",
-            "script": "lint",
-            "problemMatcher": [],
+            "script": "dev",
+            "isBackground": true,
+            "path": "packages/frontend",
+            // See here https://stackoverflow.com/a/72655542/7346915
+            "problemMatcher": [
+                {
+                    "owner": "typescript",
+                    "source": "Typescript",
+                    "fileLocation": "absolute",
+                    "applyTo": "allDocuments",
+                    "background": {
+                        "activeOnStart": true,
+                        // "beginsPattern": "sd",
+                        // "endsPattern": " > "
+                    },
+                    "pattern": [
+                        {
+                            "regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
+                            "severity": 1,
+                            "message": 2,
+                        },
+                        {
+                            "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+                            "file": 1,
+                            "line": 2,
+                            "column": 3,
+                        },
+                    ],
+                },
+            ],
+            "label": "npm: dev - packages/frontend",
+            "detail": "vite",
         },
         {
             "type": "npm",
-            "script": "start",
-            "problemMatcher": [],
-        },
-        {
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "problemMatcher": ["$tsc"],
-            "group": "build",
-        },
-        {
-            "label": "tsc: watch",
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "option": "watch",
+            "script": "dev",
+            "isBackground": true,
+            "path": "packages/backend",
             "problemMatcher": ["$tsc-watch"],
-            "group": "build",
+            "label": "npm: dev - packages/backend",
+            "detail": "tsc-watch --onSuccess 'node .'",
         },
     ],
 }

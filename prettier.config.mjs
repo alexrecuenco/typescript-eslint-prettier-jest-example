@@ -10,14 +10,14 @@ const options = {
   plugins: ['prettier-plugin-jsdoc'],
   overrides: [
     {
-      files: '*.json',
+      files: ['*.json', '**/*.json'],
       options: {
         tabWidth: 4,
       },
     },
     {
-      files: ['tsconfig.*json', 'jsconfig.*json', '.vscode/*.json'],
-      excludeFiles: ['tsconfig.aliases.json'],
+      files: ['**/tsconfig.*json', '**/jsconfig.*json', '.vscode/*.json'],
+      excludeFiles: ['**/tsconfig.aliases.json'],
       options: {
         parser: 'jsonc',
       },
@@ -25,4 +25,4 @@ const options = {
   ],
 };
 
-module.exports = options;
+export default options;

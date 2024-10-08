@@ -10,5 +10,6 @@
         "simonsiefke.svg-preview",
         "yoavbls.pretty-ts-errors",
         "csstools.postcss",
+        "antfu.vite",
     ],
 }

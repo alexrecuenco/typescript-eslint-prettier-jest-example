@@ -4,8 +4,8 @@ import {
   type JestConfigWithTsJest,
 } from 'ts-jest';
 
-import { compilerOptions } from './tsconfig.aliases.json';
 import packageJson from './package.json';
+import { compilerOptions } from './tsconfig.aliases.json';
 
 const pathAliases = {
   ...compilerOptions.paths,
@@ -15,7 +15,7 @@ const pathAliases = {
 
 // See here for more info https://kulshekhar.github.io/ts-jest/docs/getting-started/presets/#advanced
 const preset = createDefaultEsmPreset({
-  tsconfig: './tests/tsconfig.json',
+  tsconfig: './tsconfig.test.json',
 });
 
 const config: JestConfigWithTsJest = {
@@ -25,15 +25,11 @@ const config: JestConfigWithTsJest = {
   moduleNameMapper: pathsToModuleNameMapper(pathAliases, {
     useESM: true,
   }),
-  modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/build/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/build*/'],
   testRegex: ['/tests/.*tests?.[mc]?[jt]sx?$', '.*.(spec|test).[mc]?[jt]sx?$'],
   // I dono't think we need to run the spec multiple times.. the functional test on tests/ maybe.
   // We can change this back if we consider it useful to run the spec tests when the code is transpiled to javascript
-  testPathIgnorePatterns: [
-    'node_modules',
-    '<rootDir>/build[^/]*/',
-    '<rootDir>/dist/',
-  ],
+  testPathIgnorePatterns: ['node_modules', '(.+/)?build[^/]*/', '(.+/)?dist/'],
   testEnvironment: 'node',
   collectCoverageFrom: [
     'src/**/*.{js,ts,jsx,tsx}',
@@ -45,4 +41,4 @@ const config: JestConfigWithTsJest = {
   setupFilesAfterEnv: ['./jest.setup.ts'],
 };
 
-module.exports = config;
+export default config;

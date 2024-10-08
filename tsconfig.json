@@ -1,9 +1,9 @@
 {
-    "extends": "./tsconfig.aliases.json",
     "compilerOptions": {
         /* Basic Options */
         // "incremental": true,                   /* Enable incremental compilation */
         "target": "ESNext",
+
         /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
         "module": "nodenext",
         "moduleResolution": "nodenext",
@@ -19,6 +19,7 @@
             "ES2021",
             "ES2022",
         ],
+        "useDefineForClassFields": true,
         "noImplicitOverride": true,
         "checkJs": true /* Report errors in .js files. */,
         "declaration": true,
@@ -85,22 +86,25 @@
         "forceConsistentCasingInFileNames": true,
         /* Disallow inconsistently-cased references to the same file. */
     },
-    "include": ["./**/*"],
-    "exclude": [
-        "node_modules",
-        "./dist/",
-        "./build/",
-        "./build-*/",
-        // Ignore tests so that tests/tsconfig.json grabs those files instead
-        "*.config.*",
-        "tests/**/*",
-        "src/**/*.test.ts",
-        "src/**/*.spec.ts",
-        "jest.setup*.ts",
-    ],
+    "include": [],
+    "exclude": [],
     "ts-node": {
         // Runtime help for ts-node
         "require": ["tsconfig-paths/register"],
         "esm": true,
     },
+    "references": [
+        {
+            "path": "./packages/backend/tsconfig.json",
+        },
+        {
+            "path": "./tsconfig.eslint.json",
+        },
+        // {
+        //     "path": "./packages/interface/tsconfig.json",
+        // },
+        {
+            "path": "./packages/frontend/tsconfig.json",
+        },
+    ],
 }

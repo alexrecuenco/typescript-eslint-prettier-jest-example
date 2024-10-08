@@ -1,4 +1,5 @@
 import http from 'http';
+import { examples } from 'interface';
 import { replace } from './replacer.js';
 
 // See simple example here
@@ -8,7 +9,7 @@ const addOneToNumbers = replace(
   (t: number): t is number => typeof t === 'number',
 );
 
-let start = { a: 1, b: 2, c: { d: 3, e: 'hi' } };
+let start = examples;
 export function serverFactory() {
   return http.createServer((req, res) => {
     res.statusCode = 200;

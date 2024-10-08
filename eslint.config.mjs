@@ -1,12 +1,35 @@
 import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
 // When it works again do `npm install --save-dev eslint-plugin-import`
 // import imprt from 'eslint-plugin-import';
 // https://github.com/eslint/eslint/issues/18087
 // https://github.com/import-js/eslint-plugin-import/pull/2829
-import globals from 'globals';
 import jest from 'eslint-plugin-jest';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import { readFileSync } from 'fs';
+import { globSync } from 'glob';
+import globals from 'globals';
+import { join } from 'path';
+// still experimental -->> import { globSync } from 'fs';
+// sitll experimental -->> import packageJSON from './package.json' with { type: 'json' };
+
+const packageJSON = JSON.parse(readFileSync('./package.json'));
+const packageFolders = globSync(packageJSON.workspaces);
+const multiRootConfigFileGlobs = [
+  '.*.js',
+  '.*.mjs',
+  '.*.cjs',
+  '*.config.mjs',
+  '*.config.cjs',
+  '*.config.js',
+  '*.config.ts',
+];
+
+const configFiles = ['.', ...packageFolders].flatMap((p) =>
+  multiRootConfigFileGlobs.flatMap((c) => join(p, c)),
+);
 
 const off = 'off';
 const warn = 'warn';
@@ -35,27 +58,22 @@ const any_rules = (level) => {
 export default [
   {
     ignores: [
-      'lib/',
-      'build/',
-      'build-*/',
-      'dist/',
+      '**/lib/',
+      '**/build/',
+      '**/build-*/',
+      '**/dist/',
       '.vscode/',
-      'node_modules/',
-      'coverage/',
-      'report/',
+      '**/node_modules/',
+      '**/mocks',
+      '**/coverage/',
+      '**/report/',
+      '**/__snapshots__',
       '!*.js',
       '!*.mjs',
       '!*.cjs',
       '!*.ts',
       '!.vscode/*.json',
-      'package-lock.json',
-      '**/node_modules',
-      '**/dist',
-      '**/build',
-      '**/__snapshots__',
-      '**/mocks',
-      '**/coverage',
-      '**/report',
+      '**/package-lock.json',
     ],
   },
   js.configs.recommended,
@@ -67,14 +85,9 @@ export default [
       globals: globals.node,
       parser: tseslint.parser,
       parserOptions: {
-        ecmaVersion: 2022,
         sourceType: 'module',
         tsconfigRootDir: import.meta.dirname,
-        project: [
-          './tsconfig.eslint.json',
-          './tsconfig.json',
-          './tsconfig.node.json',
-        ],
+        projectService: true,
       },
     },
   },
@@ -133,15 +146,7 @@ export default [
   },
   {
     name: 'linting for configuration files',
-    files: [
-      '.*.js',
-      '.*.mjs',
-      '.*.cjs',
-      '*.config.mjs',
-      '*.config.cjs',
-      '*.config.js',
-      '*.config.ts',
-    ],
+    files: configFiles,
     rules: {
       'no-restricted-imports': off,
       // Consider if this is too leanient for tests
@@ -166,9 +171,6 @@ export default [
     // https://eslint.org/docs/user-guide/configuring#specifying-environments
     languageOptions: {
       globals: { ...globals.jest, ...globals.node },
-      parserOptions: {
-        project: ['./tests/tsconfig.json'],
-      },
     },
     plugins: { jest },
     rules: {
@@ -181,6 +183,39 @@ export default [
         },
       ],
       ...any_rules('off'),
+    },
+  },
+  {
+    files: [join('packages', 'backend', '**', '*.{ts,tsx,mtsx,mts}')],
+    languageOptions: {
+      parserOptions: {
+        sourceType: 'module',
+        tsconfigRootDir: join(import.meta.dirname, 'packages', 'backend'),
+        projectService: true,
+      },
+    },
+  },
+  {
+    files: [join('packages', 'frontend', '**', '*.{ts,tsx,mtsx,mts}')],
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.browser,
+      parserOptions: {
+        sourceType: 'module',
+        tsconfigRootDir: join(import.meta.dirname, 'packages', 'frontend'),
+        projectService: true,
+      },
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
     },
   },
 ];

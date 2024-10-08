@@ -3,7 +3,14 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-        "source.organizeImports": "never",
+        "source.fixAll": "always",
+        "source.fixAll.eslint": "always",
+        "source.sortImports": "always",
+        "source.addMissingImports.ts": "never",
+        "source.fixAll.ts": "always",
+        "source.organizeImports": "always",
+        "source.removeUnused.ts": "never",
+        "source.removeUnusedImports": "never",
     },
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "[javascript,typescript,jsonc,json]": {
@@ -12,9 +19,11 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
-    "eslint.useFlatConfig": true,
-    "jest.jestCommandLine": "npm test -- ",
-    "jest.runMode": {
-        "type": "on-demand",
+    "[json]": {
+        "editor.tabSize": 4,
     },
+    "eslint.useFlatConfig": true,
+    "jest.enable": true,
+    "jest.rootPath": "packages/",
+    "vite.autoStart": false,
 }

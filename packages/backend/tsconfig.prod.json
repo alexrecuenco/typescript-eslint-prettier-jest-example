@@ -1,0 +1,17 @@
+{
+    "extends": "./tsconfig.node.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        // For library (you send everything and let the consumer decide what to use,
+        // usually their compiler will prune the extra information)
+        "declaration": false,
+        "declarationMap": false,
+        "sourceMap": false,
+        "removeComments": true,
+        /* Generates corresponding '.d.ts' file. */
+        "rootDir": ".",
+        "types": ["node"],
+    },
+    "include": ["src/**/*", "bin/**/*"],
+    "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+}

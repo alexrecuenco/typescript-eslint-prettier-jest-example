@@ -1,0 +1,15 @@
+{
+    // "extends":[ "../../tsconfig.json", "./tsconfig.aliases.json", ],
+    // TODO: Once ts-node 11 is released, or when jest stops using it, replace with format above https://github.com/TypeStrong/ts-node/issues/1954
+    "extends": "./tsconfig.aliases.json",
+    "compilerOptions": { "incremental": true },
+    "files": [],
+    "include": [],
+    "exclude": [],
+    "references": [
+        { "path": "./tsconfig.test.json" },
+        { "path": "./tsconfig.node.json" },
+        { "path": "./tsconfig.eslint.json" },
+        { "path": "./tsconfig.prod.json" },
+    ],
+}

@@ -1,0 +1,36 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "dist/src/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "jest",
+        "dev": "tsc-watch --onSuccess 'node .'",
+        "start": "npm run build && node . serve",
+        "build": "npm run build:prod",
+        "build:debug": "npm run build:debug:node && npm run build:debug:test",
+        "build:debug:node": "tsc --build ./tsconfig.node.json && tsc-alias -p tsconfig.node.json",
+        "build:debug:test": "tsc --build ./tsconfig.test.json",
+        "build:prod": "tsc --build ./tsconfig.prod.json && tsc-alias -p tsconfig.prod.json"
+    },
+    "author": "Alex Recuenco",
+    "license": "MIT",
+    "description": "",
+    "dependencies": {
+        "interface": "^1.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.13",
+        "@types/node": "^22.7.5",
+        "@types/supertest": "^6.0.2",
+        "fast-check": "^3.22.0",
+        "jest": "^29.7.0",
+        "supertest": "^7.0.0",
+        "ts-jest": "^29.2.5",
+        "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.10",
+        "tsc-watch": "^6.2.0",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.5.3"
+    }
+}

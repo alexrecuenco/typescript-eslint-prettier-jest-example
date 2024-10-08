@@ -1,0 +1,31 @@
+{
+    "name": "interface",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "import": {
+                "default": "./dist/src/index.js",
+                "types": "./dist/src/index.d.ts"
+            }
+        }
+    },
+    "types": "dist/src/index.d.ts",
+    "main": "dist/src/index.js",
+    "module": "dist/src/index.js",
+    "description": "Interface between frontend and backend",
+    "scripts": {
+        "test": "tsc --build ./tsconfig.test.json",
+        "build": "tsc --build ./tsconfig.prod.json"
+    },
+    "author": "Alex Recuenco",
+    "license": "MIT",
+    "dependencies": {
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@fast-check/expect-type": "^0.2.0"
+    }
+}
