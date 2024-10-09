@@ -1,4 +1,5 @@
-import http from 'http';
+import express from 'express';
+import { createServer, type Server } from 'http';
 import { examples } from 'interface';
 import { replace } from './replacer.js';
 
@@ -10,11 +11,16 @@ const addOneToNumbers = replace(
 );
 
 let start = examples;
-export function serverFactory() {
-  return http.createServer((req, res) => {
-    res.statusCode = 200;
+export function serverFactory(): Server {
+  const app = express();
+
+  app.get('/health', (req, res) => {
     start = addOneToNumbers(start);
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(`Hello World\r\n${JSON.stringify(start, null, 2)}\r\n`);
+    res
+      .status(200)
+      .send(`Hello World\r\n${JSON.stringify(start, null, 2)}\r\n`);
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises -- not sure what typescript is missing here
+  return createServer(app);
 }

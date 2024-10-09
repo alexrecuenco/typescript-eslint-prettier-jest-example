@@ -18,9 +18,11 @@
     "license": "MIT",
     "description": "",
     "dependencies": {
+        "express": "^5.0.1",
         "interface": "^1.0.0"
     },
     "devDependencies": {
+        "@types/express": "^5.0.0",
         "@types/jest": "^29.5.13",
         "@types/node": "^22.7.5",
         "@types/supertest": "^6.0.2",
