@@ -12,7 +12,8 @@
         "build:debug": "npm run build:debug:node && npm run build:debug:test",
         "build:debug:node": "tsc --build ./tsconfig.node.json && tsc-alias -p tsconfig.node.json",
         "build:debug:test": "tsc --build ./tsconfig.test.json",
-        "build:prod": "tsc --build ./tsconfig.prod.json && tsc-alias -p tsconfig.prod.json"
+        "build:prod": "tsc --build ./tsconfig.prod.json && tsc-alias -p tsconfig.prod.json",
+        "clean": "tsc --build --clean && tsc --build tsconfig.prod.json --clean && tsc --build tsconfig.node.json --clean && tsc --build tsconfig.test.json --clean"
     },
     "author": "Alex Recuenco",
     "license": "MIT",

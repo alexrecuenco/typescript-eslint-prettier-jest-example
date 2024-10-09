@@ -24,7 +24,8 @@
         "test": "tsc --build ./tsconfig.test.json",
         "build": "npm run build:prod:esm && npm run build:prod:cjs",
         "build:prod:esm": "tsc --build tsconfig.esm.json",
-        "build:prod:cjs": "tsc --build tsconfig.cjs.json && cp ../../package.cjs-template.json dist/cjs/package.json"
+        "build:prod:cjs": "tsc --build tsconfig.cjs.json && cp ../../package.cjs-template.json dist/cjs/package.json",
+        "clean": "tsc --build --clean && tsc  --build tsconfig.esm.json --clean && tsc --build tsconfig.cjs.json --clean && tsc --build tsconfig.test.json --clean"
     },
     "author": "Alex Recuenco",
     "license": "MIT",
