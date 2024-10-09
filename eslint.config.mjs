@@ -186,29 +186,13 @@ export default [
     },
   },
   {
-    files: [join('packages', 'backend', '**', '*.{ts,tsx,mtsx,mts}')],
-    languageOptions: {
-      parserOptions: {
-        sourceType: 'module',
-        tsconfigRootDir: join(import.meta.dirname, 'packages', 'backend'),
-        projectService: true,
-      },
-    },
-  },
-  {
     files: [join('packages', 'frontend', '**', '*.{ts,tsx,mtsx,mts}')],
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     languageOptions: {
-      ecmaVersion: 2022,
       globals: globals.browser,
-      parserOptions: {
-        sourceType: 'module',
-        tsconfigRootDir: join(import.meta.dirname, 'packages', 'frontend'),
-        projectService: true,
-      },
     },
     rules: {
       ...reactHooks.configs.recommended.rules,

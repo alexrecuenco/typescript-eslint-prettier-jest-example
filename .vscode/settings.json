@@ -1,28 +1,4 @@
 {
-    "eslint.validate": ["typescript", "typescriptreact"],
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "always",
-        "source.fixAll.eslint": "always",
-        "source.sortImports": "always",
-        "source.addMissingImports.ts": "never",
-        "source.fixAll.ts": "always",
-        "source.organizeImports": "always",
-        "source.removeUnused.ts": "never",
-        "source.removeUnusedImports": "never",
-    },
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
-    "[javascript,typescript,jsonc,json]": {
-        "editor.indentSize": "tabSize",
-        "editor.tabSize": 2,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSaveMode": "modificationsIfAvailable",
-    },
-    "[json]": {
-        "editor.tabSize": 4,
-    },
-    "eslint.useFlatConfig": true,
     "jest.enable": false,
     "vite.autoStart": false,
 }
