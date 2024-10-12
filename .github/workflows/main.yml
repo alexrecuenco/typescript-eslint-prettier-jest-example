@@ -3,7 +3,7 @@ name: Node.js CI
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   pre-commit:
@@ -24,7 +24,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -33,11 +33,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci
-      - run: npm test
+      - run: npm ci --workspaces --include-workspace-root
       - run: npm run lint
       - run: npm run format
-      - run: npm run build:debug
-      - run: npm run build:prod
-      - run: npm run check:esmloads
-      - run: npm run check:cjsloads
+      - run: npm run build:debug --ws --if-present
+      - run: npm run build --ws --if-present
+      - run: npm test --workspaces
