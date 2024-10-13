@@ -7,7 +7,7 @@
     "scripts": {
         "test": "jest",
         "dev": "tsc-watch --onSuccess 'node .'",
-        "start": "npm run build && node . serve",
+        "start": "npm run build && npm run ",
         "build": "npm run build:prod",
         "build:debug": "npm run build:debug:node && npm run build:debug:test",
         "build:debug:node": "tsc --build ./tsconfig.node.json && tsc-alias -p tsconfig.node.json",
