@@ -18,7 +18,7 @@
         "packages/backend"
     ],
     "scripts": {
-        "dev": "concurrently -k -n backend,frontend -c magenta,blue \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+        "dev": "npm run build -ws --if-present && concurrently -k -n backend,frontend,interface -c magenta,blue,grey \"npm run dev -w backend\" \"npm run dev -w frontend\" \"npm run dev -w interface\"",
         "test": "npm run test -ws --if-present",
         "start:all": "echo REDO npm run build && node . serve",
         "watch": "echo REDO tsc-watch --onSuccess 'node .'",

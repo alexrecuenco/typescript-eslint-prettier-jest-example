@@ -1,14 +1,11 @@
 import { z } from 'zod';
 
-export const item = z.object({
+export const Task = z.object({
   name: z.string(),
-  age: z.number(),
-  id: z.string(),
-  other: z.string(),
+  etag: z.number(),
+  id: z.number(),
 });
 
-export const examples: Item[] = [
-  { name: 'Alice', age: 21, id: '1', other: 'foo' },
-];
+export const exampleTasks: Task[] = [{ name: 'Alice', etag: 1, id: 4 }];
 
-export type Item = z.infer<typeof item>;
+export type Task = z.infer<typeof Task>;

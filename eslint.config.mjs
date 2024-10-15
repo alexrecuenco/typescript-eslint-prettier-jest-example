@@ -32,6 +32,7 @@ const configFiles = ['.', ...packageFolders].flatMap((p) =>
 );
 
 const off = 'off';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const warn = 'warn';
 const error = 'error';
 
@@ -102,7 +103,10 @@ export default [
       'no-console': error,
       '@typescript-eslint/return-await': ['error', 'always'],
       'no-unused-vars': off,
-      '@typescript-eslint/no-unused-vars': error,
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { ignoreRestSiblings: true },
+      ],
       eqeqeq: [error, 'smart'],
       'no-else-return': [
         error,
@@ -136,8 +140,7 @@ export default [
       //     patterns: TEST_ONLY_IMPORTS.map(dep => `${dep}/*`),
       //   },
       // ],
-      '@typescript-eslint/explicit-member-accessibility': warn,
-      '@typescript-eslint/no-explicit-any': warn,
+      ...any_rules('warn'),
       '@typescript-eslint/explicit-function-return-type': off,
       // '@typescript-eslint/no-var-requires': off,
       '@typescript-eslint/no-empty-function': off,
