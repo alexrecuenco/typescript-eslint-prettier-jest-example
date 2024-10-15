@@ -1,9 +1,5 @@
 {
-    "watch": [
-        "src",
-        ".env",
-        "../../interface/src"
-    ],
+    "watch": ["src", ".env", "../../interface/src"],
     "env": {
         "NODE_OPTIONS": "--no-warnings=ExperimentalWarning"
     },

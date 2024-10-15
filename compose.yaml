@@ -39,13 +39,13 @@ services:
       - db-password
     healthcheck:
       test:
-          - CMD
-          - /usr/bin/wget
-          - --no-verbose
-          - --server-response
-          - --tries=1
-          - --spider
-          - http://localhost:3000/health
+        - CMD
+        - /usr/bin/wget
+        - --no-verbose
+        - --server-response
+        - --tries=1
+        - --spider
+        - http://localhost:3000/health
       interval: 5s
       start_interval: 1s
       start_period: 1s

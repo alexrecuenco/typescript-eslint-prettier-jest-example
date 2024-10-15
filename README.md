@@ -7,9 +7,11 @@ In order do as follows
 ### Docker
 
 1. Copy `dbpass.txt.example` to `dbpass.txt` and set a password
-2. Copy `password-file.txt.example` to `password-file.txt` and set the same password
+2. Copy `password-file.txt.example` to `password-file.txt` and set the same
+   password
 
-Alternatively, set `POSTGRES_HOST_AUTH_METHOD=trust` and pass it to docker compose (No authentication, this is done on debug mode)
+Alternatively, set `POSTGRES_HOST_AUTH_METHOD=trust` and pass it to docker
+compose (No authentication, this is done on debug mode)
 
 ### Local
 
@@ -47,7 +49,8 @@ docker compose -f compose.yaml -f compose.debug.yaml up db
 
 In `vscode` use the task labeled `dev`.
 
-In the terminal you want to open two terminals, opening a database and the development environment
+In the terminal you want to open two terminals, opening a database and the
+development environment
 
 ```bash
 # Then keep this process running
@@ -61,9 +64,10 @@ docker compose -f compose.yaml -f compose.debug.yaml down -v db
 npm run clean -ws --if-present
 ```
 
-Access `http://localhost:3000/tasks/debug/populate` to populate a few tasks (or click the populate button)
+Access `http://localhost:3000/tasks/debug/populate` to populate a few tasks (or
+click the populate button)
 
-## Docker *deployment*
+## Docker _deployment_
 
 ```bash
 docker compose up

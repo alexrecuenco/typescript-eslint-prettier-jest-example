@@ -42,7 +42,7 @@
       "source.removeUnused.ts": "never",
       "source.removeUnusedImports": "never",
     },
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnSaveMode": "file",
     "editor.indentSize": "tabSize",
     "editor.tabSize": 2,
     "[javascript][typescript][typescriptreact][javascriptreact][jsonc][json][css][postcss]": {
@@ -51,6 +51,8 @@
       "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
     "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSaveMode": "file",
       "editor.tabSize": 4,
     },
     "[css][postcss][scss][dockercompose]": {
