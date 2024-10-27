@@ -1,6 +1,6 @@
 import './App.css';
 import reactLogo from './assets/react.svg';
-import { TaskWrapper } from './Tasks';
+import { TaskApp } from './tasks/Tasks';
 import viteLogo from '/vite.svg';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         </a>
         <h1>Vite + React + Express + Multi-root</h1>
       </div>
-      <TaskWrapper />
+      <TaskApp />
     </>
   );
 }
