@@ -1,5 +1,10 @@
 import { randomUUID } from 'crypto';
-import { ErrorRequestHandler, json, Router } from 'express';
+import {
+  ErrorRequestHandler,
+  json,
+  Router,
+  type RequestHandler,
+} from 'express';
 import { Task } from 'interface';
 import pg from 'pg';
 import { z } from 'zod';
@@ -46,6 +51,16 @@ const unknownErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err);
   next();
 };
+
+const validate =
+  <T extends z.ZodType<unknown>>(
+    schema: T,
+  ): RequestHandler<Record<string, string>, unknown, z.infer<T>> =>
+  async (req, _, next) => {
+    const validated = await schema.parseAsync(req.body);
+    req.body = validated;
+    return next();
+  };
 export function taskRouter(client: pg.Pool, router = Router()) {
   router.use(json());
 
@@ -85,8 +100,8 @@ export function taskRouter(client: pg.Pool, router = Router()) {
     res.status(200).json({ rowsDeleted: response.rowCount });
   });
 
-  router.post('/:id', async (req, res) => {
-    const task = await Task.parseAsync(req.body);
+  router.post('/:id', validate(Task), async (req, res) => {
+    const task = req.body;
     const response = await client.query(
       'UPDATE tasks SET name = $1::text, etag = etag + 1 WHERE id = $2::integer AND etag = $3::integer RETURNING etag',
       [task.name, req.params.id, task.etag],
@@ -105,16 +120,20 @@ export function taskRouter(client: pg.Pool, router = Router()) {
     res.status(200).json(returnedTask);
   });
 
-  router.post('/', async (req, res) => {
-    const task = await Task.omit({ etag: true, id: true }).parseAsync(req.body);
-    const result = await client.query(
-      'INSERT INTO tasks (name) VALUES ($1::text) RETURNING *',
-      [task.name],
-    );
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const response = { ...req.body, ...result.rows[0] };
-    res.status(201).send(await Task.parseAsync(response));
-  });
+  router.post(
+    '/',
+    validate(Task.omit({ etag: true, id: true })),
+    async (req, res) => {
+      const task = req.body;
+      const result = await client.query(
+        'INSERT INTO tasks (name) VALUES ($1::text) RETURNING *',
+        [task.name],
+      );
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const response = { ...req.body, ...result.rows[0] };
+      res.status(201).send(await Task.parseAsync(response));
+    },
+  );
 
   router.get('/debug/populate', async (req, res) => {
     const n = req.query.n;
