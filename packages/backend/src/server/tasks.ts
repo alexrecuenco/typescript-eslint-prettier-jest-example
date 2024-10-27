@@ -52,8 +52,6 @@ const unknownErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   next();
 };
 
-
-
 function validate<T>(
   body: z.ZodType<T>,
 ): RequestHandler<Record<string, string | undefined>, unknown, T> {
