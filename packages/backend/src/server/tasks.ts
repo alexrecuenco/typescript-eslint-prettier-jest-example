@@ -52,15 +52,17 @@ const unknownErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   next();
 };
 
-const validate =
-  <T extends z.ZodType<unknown>>(
-    schema: T,
-  ): RequestHandler<Record<string, string>, unknown, z.infer<T>> =>
-  async (req, _, next) => {
-    const validated = await schema.parseAsync(req.body);
-    req.body = validated;
+
+
+function validate<T>(
+  body: z.ZodType<T>,
+): RequestHandler<Record<string, string | undefined>, unknown, T> {
+  return async (req, _, next) => {
+    req.body = await body.parseAsync(req.body);
     return next();
   };
+}
+
 export function taskRouter(client: pg.Pool, router = Router()) {
   router.use(json());
 
