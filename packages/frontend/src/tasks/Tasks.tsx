@@ -2,6 +2,8 @@
 import { Task } from 'interface';
 import { useEffect, useState } from 'react';
 import { LuRefreshCw } from 'react-icons/lu';
+import { MdDeleteForever } from 'react-icons/md';
+
 import { wait } from '../utils';
 import { ApiError, TaskApi, type AddTaskSchema } from './api';
 import { TasksProvider } from './TaskContext';
@@ -190,7 +192,7 @@ function Item({ item }: { item: Task }) {
           deleteTask(item.id);
         }}
       >
-        X
+        <MdDeleteForever />
       </button>
       {editing ? (
         <EditTask
