@@ -17,7 +17,8 @@
         "build:debug:node": "tsc --build ./tsconfig.node.json && tsc-alias -p tsconfig.node.json",
         "build:debug:test": "tsc --build ./tsconfig.test.json",
         "build:prod": "tsc --build ./tsconfig.prod.json && tsc-alias -p tsconfig.prod.json",
-        "clean": "tsc --build --clean && tsc --build tsconfig.prod.json --clean && tsc --build tsconfig.node.json --clean && tsc --build tsconfig.test.json --clean"
+        "clean": "tsc --build --clean && tsc --build tsconfig.prod.json --clean && tsc --build tsconfig.node.json --clean && tsc --build tsconfig.test.json --clean",
+        "typeorm": "typeorm-ts-node-esm"
     },
     "author": "Alex Recuenco",
     "license": "MIT",
@@ -28,8 +29,11 @@
         "express-winston": "^4.2.0",
         "interface": "^1.0.0",
         "pg": "^8.13.0",
+        "typeorm": "0.3.20",
         "winston": "^3.15.0",
-        "zod": "^3.23.8"
+        "zod": "^3.23.8",
+        "reflect-metadata": "^0.1.13",
+        "sqlite3": "^5.0.2"
     },
     "devDependencies": {
         "@types/express": "^5.0.0",
