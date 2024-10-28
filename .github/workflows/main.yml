@@ -2,8 +2,9 @@ name: Node.js CI
 
 on:
   pull_request:
+    branches: [main, dev, multiroot]
   push:
-    branches: [main, dev]
+    branches: [main, dev, multiroot]
 
 jobs:
   pre-commit:

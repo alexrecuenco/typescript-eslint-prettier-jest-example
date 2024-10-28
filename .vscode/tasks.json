@@ -9,14 +9,15 @@
             "dependsOn": [
                 "npm: dev - packages/frontend",
                 "npm: dev - packages/backend",
+                "npm: dev - packages/interface",
             ],
+            "problemMatcher": [],
         },
         {
             "type": "npm",
             "script": "dev",
             "isBackground": true,
             "path": "packages/frontend",
-            // See here https://stackoverflow.com/a/72655542/7346915
             "problemMatcher": [
                 {
                     "owner": "typescript",
@@ -25,8 +26,8 @@
                     "applyTo": "allDocuments",
                     "background": {
                         "activeOnStart": true,
-                        // "beginsPattern": "sd",
-                        // "endsPattern": " > "
+                        "beginsPattern": "ready",
+                        "endsPattern": "ready",
                     },
                     "pattern": [
                         {
@@ -50,10 +51,46 @@
             "type": "npm",
             "script": "dev",
             "isBackground": true,
+            "dependsOn": ["compose: database"],
             "path": "packages/backend",
-            "problemMatcher": ["$tsc-watch"],
+            "problemMatcher": [
+                {
+                    "owner": "typescript",
+                    "source": "ts",
+                    "applyTo": "allDocuments",
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".*starting.*",
+                        "endsPattern": ".*running.*",
+                    },
+                },
+            ],
             "label": "npm: dev - packages/backend",
-            "detail": "tsc-watch --onSuccess 'node .'",
+        },
+        {
+            "type": "npm",
+            "script": "dev",
+            "isBackground": true,
+            "path": "packages/interface",
+            "problemMatcher": ["$tsc-watch"],
+            "label": "npm: dev - packages/interface",
+        },
+        {
+            "type": "shell",
+            "command": "docker",
+            "args": [
+                "compose",
+                "-f",
+                "compose.yaml",
+                "-f",
+                "compose.debug.yaml",
+                "up",
+                "db",
+                "-d",
+            ],
+            "isBackground": false,
+            "problemMatcher": [],
+            "label": "compose: database",
         },
     ],
 }

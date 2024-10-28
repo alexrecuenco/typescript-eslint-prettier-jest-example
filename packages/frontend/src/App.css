@@ -5,15 +5,27 @@
   text-align: center;
 }
 
+p,
+input {
+  justify-self: center;
+  font-size: large;
+}
+
+p.error {
+  color: #d91010;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,12 +34,17 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  svg.loading {
+    animation: logo-spin infinite 1s linear;
+  }
+
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
@@ -39,4 +56,15 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.header {
+  display: flex;
+
+  padding-bottom: 60px;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }

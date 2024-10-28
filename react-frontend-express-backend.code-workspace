@@ -42,16 +42,26 @@
       "source.removeUnused.ts": "never",
       "source.removeUnusedImports": "never",
     },
-    "editor.formatOnSaveMode": "modificationsIfAvailable",
-    "[javascript,typescript,jsonc,json]": {
-      "editor.indentSize": "tabSize",
-      "editor.tabSize": 2,
+    "editor.formatOnSaveMode": "file",
+    "editor.indentSize": "tabSize",
+    "editor.tabSize": 2,
+    "[javascript][typescript][typescriptreact][javascriptreact][jsonc][json][css][postcss]": {
+      "editor.formatOnSave": true,
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSaveMode": "modificationsIfAvailable",
     },
     "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSaveMode": "file",
       "editor.tabSize": 4,
     },
+    "[css][postcss][scss][dockercompose]": {
+      // modifications if available is not working for css
+      "editor.formatOnSaveMode": "file",
+    },
     "eslint.useFlatConfig": true,
+    "emmet.includeLanguages": {
+      "css": "css",
+    },
   },
 }
